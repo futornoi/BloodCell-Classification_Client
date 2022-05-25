@@ -1,13 +1,254 @@
+:root {
+	--bloodBg: #fcbdbd;
+	--bloodRed: #8b0000;
+	--transition: all .35s ease-in-out;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: 'BIZ UDPGothic', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 16px;
+	letter-spacing: .5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: inherit;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+	monospace;
+}
+
+%flexCenter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	height: 100%;
+}
+
+.layout__container {
+	height: 100%;
+	width: 100%;
+	flex: 1 0 100%;
+	padding: 0 40px;
+	background-color: var(--bloodBg);
+}
+
+//HOME
+#home {
+	@extend %flexCenter;
+	text-align: center;
+
+	.home__content {
+		max-width: 80%;
+
+		&_desc {
+			line-height: 20px;
+			margin-bottom: 30px;
+		}
+	}
+}
+
+
+//NOT_FOUND
+#notFound {
+	@extend %flexCenter;
+	text-transform: uppercase;
+
+	.notFound__content {
+		text-align: center;
+	}
+}
+
+//CABINET
+#cabinet {
+	.image-section {
+		margin-top: 40px;
+		@extend %flexCenter;
+		flex-direction: column;
+
+		.image-btn {
+			margin-top: 12px;
+			font-size: 12px;
+		}
+
+		input[type='file'] {
+			width: 0;
+			height: 0;
+			overflow: hidden;
+			opacity: 0;
+		}
+	}
+
+	.image-wrapper {
+		@extend %flexCenter;
+		width: 80px;
+		height: 80px;
+		display: block;
+		overflow: hidden;
+		border-radius: 4px;
+		&:hover {
+			.image-block {
+				transform: scale(1.1);
+			}
+		}
+	}
+
+	.image-block {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: var(--transition);
+
+		&:not(.empty) {
+			cursor: zoom-in;
+		}
+	}
+
+	.empty {
+		font-size: 12px;
+		text-align: center;
+		background-color: rgba(189, 188, 188, 0.68);
+		@extend %flexCenter;
+	}
+
+	.predict-btn {
+		margin-left: 50%;
+		transform: translateX(-50%);
+		margin-top: 12px;
+	}
+
+	.chart__container {
+		margin-top: 50px;
+		.recharts-responsive-container .recharts-wrapper {
+			width: 100% !important;
+			svg {
+				width: 100%;
+			}
+		}
+	}
+
+}
+
+
+//DEFAULT
+.default-title {
+	font-size: 24px;
+	letter-spacing: .5px;
+}
+
+.default-btn {
+	color: var(--bloodRed);
+	border: 1px solid var(--bloodRed);
+	background-color: white;
+	padding: 8px 12px;
+	border-radius: 6px;
+	outline: none;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: all .35s ease-in-out;
+	text-decoration: none;
+	font-size: 16px;
+
+	span {
+		position: relative;
+	}
+
+	&:before {
+		content: "";
+		top: 0;
+		left: 0;
+		width: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 0;
+		position: absolute;
+		border-radius: 6px;
+		background-color: var(--bloodRed);
+		transition: var(--transition);
+	}
+
+	&:hover {
+		color: white;
+		border-color: white;
+
+		&:before {
+			width: 100%;
+		}
+	}
+	
+	&.black {
+		background-color: black;
+		color: white;
+		&:before {
+			background-color: white;
+		}
+		&:hover {
+			border-color: black;
+			color: black;
+		}
+	}
+}
+
+.preloader {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	@extend %flexCenter;
+	font-size: 24px;
+	color: var(--bloodRed);
+	background-color: var(--bloodBg);
+	text-align: center;
+}
+
+.popup {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	@extend %flexCenter;
+	backdrop-filter: blur(4px);
+	background: rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	opacity: 0;
+	z-index: 1;
+	transition: var(--transition);
+	pointer-events: none;
+
+	&.active {
+		overflow: visible;
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	&__content {
+		position: relative;
+		width: 50%;
+		background-color: #fff;
+		z-index: 2;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.popup-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 }

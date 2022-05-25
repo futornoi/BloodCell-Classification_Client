@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRoutes } from 'react-router-dom';
+import { ModelContainer } from './Models/Initializer';
+import { config } from "./routers";
 
-function App() {
+const App = () => {
+  const router = useRoutes(config)
+
   return (
-    <div className="App">
-      hello
+    <div id="layout">
+      {router}
     </div>
-  );
-}
+  )
+};
 
 export default App;
