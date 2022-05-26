@@ -25,7 +25,7 @@ const Cabinet = () => {
     dispatch(setError(''))
     dispatch(setLoading(true))
     try {
-      await modelCache.loadFromURL('http://localhost:3001/model_metadata');
+      await modelCache.loadFromURL('https://blood-classification.herokuapp.com/model_metadata');
       dispatch(setLoading(false))
     } catch (e: any) {
       dispatch(setError(e?.message))
