@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 
-interface Popup {
+interface PopupContainer {
   children?: ReactNode;
   active: boolean;
   toggleModal: () => void;
 }
 
-const Popup: React.FC<Popup> = ({ children, active, toggleModal }) => (
+const Popup: React.FC<PopupContainer> = ({ children, active, toggleModal }) => (
   <div className={`popup ${active ? 'active' : ''}`} onClick={toggleModal}>
     <div onClick={(e) => {
       e.stopPropagation()

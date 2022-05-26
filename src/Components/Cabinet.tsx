@@ -9,8 +9,8 @@ import {
 } from "../Reducers/CabinetReducer";
 import { ModelContainer, runInference } from "../Models/Initializer";
 import { computeScore } from "../Helper/computeScore";
-import Preloader from "./Preloader";
-import Popup from "./Popup";
+import Preloader from "./PreloaderContainer";
+import Popup from "./PopupContainer";
 import { Pie, Tooltip, PieChart, ResponsiveContainer } from "recharts";
 
 let modelCache = new ModelContainer(null);
@@ -70,7 +70,7 @@ const Cabinet = () => {
           {
             !!state.image_file
               ? <img onClick={toggleModal} id="image-container" className="image-block" src={state.image_file}
-                     alt="Predictions image"/>
+                     alt="Predictions"/>
               : <div className="image-block empty">Uploaded image</div>
           }
         </div>
@@ -96,7 +96,7 @@ const Cabinet = () => {
         )
       }
       <Popup active={imgModal} toggleModal={toggleModal}>
-        <img className="popup-image" src={state.image_file} alt="Predictions image"/>
+        <img className="popup-image" src={state.image_file} alt="Predictions"/>
       </Popup>
     </div>
   );
