@@ -1,4 +1,3 @@
-import React from 'react';
 import { pagesPath } from "../routers";
 import { NavLink } from "react-router-dom";
 

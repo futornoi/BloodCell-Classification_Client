@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useReducer, useState } from 'react';
+import { ChangeEvent, useEffect, useReducer, useState } from 'react';
 import {
   cabinetInitial,
   cabinetReducer, resetResult,
@@ -11,7 +11,7 @@ import { ModelContainer, runInference } from "../Models/Initializer";
 import { computeScore } from "../Helper/computeScore";
 import Preloader from "./PreloaderContainer";
 import Popup from "./PopupContainer";
-import { Pie, Tooltip, PieChart, ResponsiveContainer } from "recharts";
+import { Tooltip, BarChart, ResponsiveContainer, Bar, XAxis } from "recharts";
 
 let modelCache = new ModelContainer(null);
 
@@ -87,10 +87,11 @@ const Cabinet = () => {
         (state.show_result && state.scores) && (
           <div className="chart__container" style={{ width: "100%", height: 500 }}>
             <ResponsiveContainer>
-              <PieChart>
-                <Pie dataKey="value" data={state.scores} fill="#8b0000" label />
+              <BarChart data={state.scores} margin={{ right: 100, left: 100 }}>
+                <XAxis dataKey="name" scale="point" padding={{ left: 100, right: 100 }} />
                 <Tooltip/>
-              </PieChart>
+                <Bar dataKey="value" fill="#8b0000" background={{ fill: 'rgba(206, 162, 162, 0.65)' }} label  />
+              </BarChart>
             </ResponsiveContainer>
           </div>
         )
