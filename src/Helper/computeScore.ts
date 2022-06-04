@@ -1,6 +1,7 @@
 export const computeScore = (predictions: number[]) => {
   const proportions = []
-  const proportionsNames = ['EOSINOPHIL', 'LYMPHOCYTE', 'MONOCYTE', 'NEUTROPHIL']
+  const proportionsNames = ['BASOPHIL', 'EOSINOPHIL', 'LYMPHOCYTE', 'MONOCYTE', 'NEUTROPHIL']
+  // const proportionsNames = ['EOSINOPHIL', 'LYMPHOCYTE', 'MONOCYTE', 'NEUTROPHIL']
   const sum = predictions.reduce((prev, next) => prev + next, 0)
 
   for(let i = 0; i < predictions.length; i++){

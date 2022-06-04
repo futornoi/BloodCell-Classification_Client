@@ -1,4 +1,6 @@
+import { Tooltip, BarChart, ResponsiveContainer, Bar, XAxis } from "recharts";
 import { ChangeEvent, useEffect, useReducer, useState } from 'react';
+import { ModelContainer, runInference } from "../Models/Initializer";
 import {
   cabinetInitial,
   cabinetReducer, resetResult,
@@ -7,11 +9,10 @@ import {
   setLoading,
   uploadFile,
 } from "../Reducers/CabinetReducer";
-import { ModelContainer, runInference } from "../Models/Initializer";
 import { computeScore } from "../Helper/computeScore";
 import Preloader from "./PreloaderContainer";
 import Popup from "./PopupContainer";
-import { Tooltip, BarChart, ResponsiveContainer, Bar, XAxis } from "recharts";
+import { HOST } from "../Contstants";
 
 let modelCache = new ModelContainer(null);
 
@@ -25,7 +26,7 @@ const Cabinet = () => {
     dispatch(setError(''))
     dispatch(setLoading(true))
     try {
-      await modelCache.loadFromURL('https://blood-classification.herokuapp.com/model_metadata');
+      await modelCache.loadFromURL(HOST.SERVER + '/model_metadata');
       dispatch(setLoading(false))
     } catch (e: any) {
       dispatch(setError(e?.message))
@@ -90,7 +91,7 @@ const Cabinet = () => {
               <BarChart data={state.scores} margin={{ right: 100, left: 100 }}>
                 <XAxis dataKey="name" scale="point" padding={{ left: 100, right: 100 }} />
                 <Tooltip/>
-                <Bar dataKey="value" fill="#8b0000" background={{ fill: 'rgba(206, 162, 162, 0.65)' }} label  />
+                <Bar dataKey="value" fill="#8b0000" barSize={100} background={{ fill: 'rgba(206, 162, 162, 0.65)' }} label  />
               </BarChart>
             </ResponsiveContainer>
           </div>
