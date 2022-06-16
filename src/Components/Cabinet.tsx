@@ -86,12 +86,12 @@ const Cabinet = () => {
       }
       {
         (state.show_result && state.scores) && (
-          <div className="chart__container" style={{ width: "100%", height: 500 }}>
+          <div className="chart__container" style={{ width: "100%", height: 400 }}>
             <ResponsiveContainer>
-              <BarChart data={state.scores} margin={{ right: 100, left: 100 }}>
-                <XAxis dataKey="name" scale="point" padding={{ left: 100, right: 100 }} />
+              <BarChart data={state.scores} margin={{ right: 50, left: 50 }}>
+                <XAxis dataKey="name" scale="point" padding={{ left: 20, right: 20 }}  />
                 <Tooltip/>
-                <Bar dataKey="value" fill="#8b0000" barSize={100} background={{ fill: 'rgba(206, 162, 162, 0.65)' }} label  />
+                <Bar dataKey="value" fill="#8b0000" barSize={200} background={{ fill: 'rgba(206, 162, 162, 0.65)' }} label  />
               </BarChart>
             </ResponsiveContainer>
           </div>
