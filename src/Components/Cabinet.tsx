@@ -26,7 +26,7 @@ const Cabinet = () => {
     dispatch(setError(''))
     dispatch(setLoading(true))
     try {
-      await modelCache.loadFromURL(HOST.SERVER + '/model_metadata');
+      await modelCache.loadFromURL(HOST.LOCAL + '/model_metadata');
       dispatch(setLoading(false))
     } catch (e: any) {
       dispatch(setError(e?.message))
@@ -89,7 +89,7 @@ const Cabinet = () => {
           <div className="chart__container" style={{ width: "100%", height: 400 }}>
             <ResponsiveContainer>
               <BarChart data={state.scores} margin={{ right: 50, left: 50 }}>
-                <XAxis dataKey="name" scale="point" padding={{ left: 20, right: 20 }}  />
+                <XAxis dataKey="name" scale="point" stroke="#000" padding={{ left: 20, right: 20 }}  />
                 <Tooltip/>
                 <Bar dataKey="value" fill="#8b0000" barSize={200} background={{ fill: 'rgba(206, 162, 162, 0.65)' }} label  />
               </BarChart>

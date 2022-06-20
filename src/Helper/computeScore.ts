@@ -1,7 +1,9 @@
 export const computeScore = (predictions: number[]) => {
   const proportions = []
-  const proportionsNames = ['BASOPHIL', 'EOSINOPHIL', 'LYMPHOCYTE', 'MONOCYTE', 'NEUTROPHIL']
-  // const proportionsNames = ['EOSINOPHIL', 'LYMPHOCYTE', 'MONOCYTE', 'NEUTROPHIL']
+  const proportionsNames = ['EOSINOPHIL', 'LYMPHOCYTE', 'MONOCYTE', 'NEUTROPHIL'];
+  if(predictions.length === 5) {
+    proportionsNames.unshift('BASOPHIL');
+  }
   const sum = predictions.reduce((prev, next) => prev + next, 0)
 
   for(let i = 0; i < predictions.length; i++){
