@@ -26,7 +26,7 @@ const Cabinet = () => {
     dispatch(setError(''))
     dispatch(setLoading(true))
     try {
-      await modelCache.loadFromURL(HOST.LOCAL + '/model_metadata');
+      await modelCache.loadFromURL(HOST.SERVER + '/model_metadata');
       dispatch(setLoading(false))
     } catch (e: any) {
       dispatch(setError(e?.message))
